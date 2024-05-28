@@ -1,0 +1,149 @@
+{% extends 'partials/base.html'%}
+{% load static %}
+{% block content %}
+<body>
+   
+    <header>
+       <div class="navigation">
+          <div class="ham-btn" onclick="showNav()">
+             <span></span>
+             <span></span>
+             <span></span>
+          </div>
+          <div class="links">
+             <div class="link">
+                <a href="{% url 'core:index' %}">Home</a>
+             </div>
+             <div class="link">
+                <a href="{% url 'core:product' %}">Property</a>
+             </div>
+             <div class="link">
+                <a href="{% url 'core:login' %}">Login</a>
+             </div>
+          </div>
+       </div>
+    </header>
+
+    <div class="logo">
+       <a href="{% url 'core:index' %}"><img src="{% static 'img/Group 3475.png' %}" alt=""></a>
+    </div>
+    
+    <div class="pagination">
+       <p><a href="{% url 'core:index' %}">Home > </a> <a href="{% url 'core:product' %}">Property ></a></p>
+    </div>
+    <!-- product section -->
+    <section class="product-container">
+       <!-- left side -->
+       <div class="img-card">
+          <img src="{{ p.image.url }}" alt="" id="featured-image" />
+          <!-- small img -->
+          <div class="small-Card">
+            {% for p in p_images  %}
+            <p>{{ p.image.url }}</p>
+             <img src="{{ p.images.url }}" alt="" class="small-Img" />
+            {% endfor %}
+          </div>
+       </div>
+       <!-- Right side -->
+       <div class="product-info">
+          <h3>{{p.name}}</h3>
+         {% if p.dtcp_approved %}
+                        <p style="text-align: right;">&#9989 DTCP Approved</p>
+         {% endif %} 
+          <p>
+            {{ p.description }}
+          </p>
+          <div class="land_features">
+             <p>What this place Offers</p>
+             <ul>
+               {% for feature in special_features %}
+                  <li>{{ feature }}</li>
+               {% endfor %}
+           </ul>
+          </div>
+          <div class="address">
+             <img src="{% static 'img/map.png' %}" alt="map png" />
+             <p>
+               {{ p.address }}
+             </p>
+          </div>
+          <div class="prc_cont">
+             <h5>Price: Rs.{{p.price}}</h5>
+             <div class="phn">
+                <img src="{% static 'img/customer-service.png' %}" alt="" />
+                <h5>phno:9382740009, 8667786141</h5>
+             </div>
+          </div>
+       </div>
+    </section>
+
+
+
+    <section class="map">
+      <h1>Map View</h1>
+      <div id="mapid"></div>
+      <div id="marker" data-lat="{{ latitude }}" data-lon="{{ longitude }}" data-address="{{ p.address }}" style="display: none;">
+          <div class="popup-content">
+              <div class="popup-title"><strong>Plot 1:</strong></div>
+              <div class="popup-image">
+                  <img src="{{ p.image.url }}" alt="Marker Image"/>
+              </div>
+              <div class="popup-address" id="popup-address">{{ p.address }}</div>
+              <div class="popup-coordinates" id="popup-coordinates">
+              <div><strong>Latitude:</strong> {{ latitude }}</div>
+              <div><strong>Longitude:</strong> {{ longitude }}</div>
+            </div>
+
+          </div>
+      </div>
+  </section>
+  
+  
+  
+  
+
+
+    <section class="suggested_prd">
+       <h1>Nearby Property</h1>
+       <div class="card-container">
+       <div class="card" id="card">
+          <img src="{% static 'img/pexels-akos-szabo-145938-440731.jpg' %}" alt="Denim Jeans" style="width:100%">
+          <div class="card-content">
+             <p style="text-align: right;">&#9989 DTCP Approved</p>
+             <h1>Tailored Jeans</h1>
+             <p>Some text about the jeansThe point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to ..</p>
+             <p style="text-align: right;color: #FDBC00;">Rs.xxxx </p>
+          </div>
+       </div>
+       <div class="card" id="card">
+        <img src="{% static 'img/pexels-akos-szabo-145938-440731.jpg' %}" alt="Denim Jeans" style="width:100%">
+        <div class="card-content">
+           <p style="text-align: right;">&#9989 DTCP Approved</p>
+           <h1>Tailored Jeans</h1>
+           <p>Some text about the jeansThe point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to ..</p>
+           <p style="text-align: right;color: #FDBC00;">Rs.xxxx </p>
+        </div>
+     </div>
+     <div class="card" id="card">
+      <img src="{% static 'img/pexels-akos-szabo-145938-440731.jpg' %}" alt="Denim Jeans" style="width:100%">
+      <div class="card-content">
+         <p style="text-align: right;">&#9989 DTCP Approved</p>
+         <h1>Tailored Jeans</h1>
+         <p>Some text about the jeansThe point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to ..</p>
+         <p style="text-align: right;color: #FDBC00;">Rs.xxxx </p>
+      </div>
+   </div>
+   <div class="card" id="card">
+    <img src="{% static 'img/pexels-akos-szabo-145938-440731.jpg' %}" alt="Denim Jeans" style="width:100%">
+    <div class="card-content">
+       <p style="text-align: right;">&#9989 DTCP Approved</p>
+       <h1>Tailored Jeans</h1>
+       <p>Some text about the jeansThe point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to ..</p>
+       <p style="text-align: right;color: #FDBC00;">Rs.xxxx </p>
+    </div>
+ </div>
+</div>
+       <script></script>
+    </section>
+   </body>
+    {% endblock content %}
