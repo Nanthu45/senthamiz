@@ -95,7 +95,7 @@
             <h1 style="text-align: center;">FEATURED</h1>
             <div class="card-container">
                 {% for p in products %}
-                    <a href="{% url 'core:product_details' pid=p.pid %}">
+                    <a href="{% url 'core:product' %}">
                     <div class="card" id="card">
                         <img src="{{ p.image.url }}" alt="Product Image" style="width:100%">
                         <div class="card-content card-home">

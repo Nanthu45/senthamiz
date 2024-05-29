@@ -1646,4 +1646,23 @@ quote {
   letter-spacing: 5px;
   text-align: center;
   margin-top: 5%;
+  text-transform: uppercase;
+}
+
+/*---Product Blur---*/
+.blurred {
+  filter: blur(5px);
+  position: relative;
+  z-index: -1;
+}
+
+/*---Pagination login---*/
+
+.pagination h1{
+  color: #142B6F;
+}
+
+.pagination a{
+  color: #FDBC00;
+  
 }

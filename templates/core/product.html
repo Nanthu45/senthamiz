@@ -51,23 +51,21 @@
 
     <div class="pagination">
         <p><a href="{% url 'core:index' %}"> Home ></a> Property</p>
-    </div>
-
-    <div>
         {% if not is_authenticated %}
-            <h1>Please Login to view products <a href="{% url 'userauths:sign-up' %}" style="color: blue;text-decoration: underline;">Login</a> </h1>
-        {% endif %}
-
-        {% if not view %}
+            <h1>Please Login to view products <a href="{% url 'userauths:sign-up' %}" >Login</a> </h1>
+        {% elif not view %}
             <h1>Please wait until admin gives you access</h1>
         {% endif %}
     </div>
+
+    <div>
+       
+    </div>
     
     <div class="card-container">
-        {% for p in products %}
+        {% for p in page_obj %}
         <div class="card" id="card">
             {% if is_authenticated and view %}
-       
                 <a href="{% url 'core:product_details' pid=p.pid %}">
                     <img src="{{ p.image.url }}" alt="Product Image" style="width:100%">
                     <div class="card-content">
@@ -90,34 +88,52 @@
                         <p>{{ p.description|truncatewords:30 }}</p>
                         <p style="text-align: right;color: #FDBC00;">Rs.{{ p.price }} </p>
                     </div>
-                    <div class="overlay">
-                        <p>Please log in to view details</p>
-                    </div>
                 </div>
             {% endif %}
         </div>
         {% endfor %}
     </div>
-    <style>
-    .blurred {
-        filter: blur(5px);
-        position: relative;
-    }
     
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.8);
-        color: black;
-        font-size: 20px;
-    }
+    <div class="pagination-Product">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </span>
+    </div>
+    <style>
+        .pagination-Product {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .pagination-Product a, .pagination-Product span {
+            margin: 0 5px;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .pagination-Product a:hover {
+            background-color: #f0f0f0;
+        }
+        .pagination-Product .current {
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
     </style>
+    
     
 </body>
 {% endblock content %}

@@ -57,9 +57,9 @@
                 Navigation
                 <h3>
                 <UL>
-                   <LI><a href="index.html">Home</a></LI>
-                   <LI><a href="product.html">Property</a></LI>
-                   <LI><a href="login.html">Login</a></LI>
+                   <LI><a href="{% url 'core:index' %}">Home</a></LI>
+                   <LI><a href="{% url 'core:product' %}">Property</a></LI>
+                   <LI><a href="{% url 'userauths:sign-up' %}">Login</a></LI>
                   
                 </UL>
              </div>

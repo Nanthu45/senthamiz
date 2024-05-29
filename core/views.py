@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from core.models import Category,Product,ProductImages
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
 
 def index(request, cid=None):
     categories = Category.objects.all()  
@@ -29,16 +30,22 @@ def product(request, cid=None):
         products = Product.objects.filter(product_status="published").order_by("-id")
         category = None
     
+    paginator = Paginator(products, 12)  # Show 12 products per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     is_authenticated = request.user.is_authenticated
     can_view_products = request.user.can_view_products if is_authenticated else False
     username = request.user.username
+    
     context = {
-        "products": products,
+        "page_obj": page_obj,
         "category": category,
-        "is_authenticated": request.user.is_authenticated,
-        "view":can_view_products,
+        "is_authenticated": is_authenticated,
+        "view": can_view_products,
         "username": username,
     }
+    
     return render(request, 'core/product.html', context)
 
 def product_details(request,pid):
