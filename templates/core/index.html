@@ -11,6 +11,11 @@
                 <span></span>
             </div>
             <div class="links">
+                {% if is_authenticated %}
+                <div class="link">
+                    <a href="#" style="color: #FDBC00;">Welcome, {{ username }}!</a>
+                </div>
+                {% endif %}
                 <div class="link">
                     <a href="{% url 'core:index' %}">Home</a>
                 </div>
@@ -18,7 +23,10 @@
                     <a href="{% url 'core:product' %}">Property</a>
                 </div>
                 <div class="link">
-                    <a href="{% url 'core:login' %}">Login</a>
+                    <a href="{% url 'userauths:sign-up' %}">Login</a>
+                </div>
+                <div class="link">
+                    <a href="{% url 'userauths:sign-out' %}">Logout</a>
                 </div>
             </div>
         </div>

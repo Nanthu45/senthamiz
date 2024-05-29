@@ -11,15 +11,23 @@
              <span></span>
           </div>
           <div class="links">
-             <div class="link">
+            {% if is_authenticated %}
+            <div class="link">
+                <a href="#" style="color: #FDBC00;">Welcome, {{ username }}!</a>
+            </div>
+            {% endif %}
+            <div class="link">
                 <a href="{% url 'core:index' %}">Home</a>
-             </div>
-             <div class="link">
+            </div>
+            <div class="link">
                 <a href="{% url 'core:product' %}">Property</a>
-             </div>
-             <div class="link">
-                <a href="{% url 'core:login' %}">Login</a>
-             </div>
+            </div>
+            <div class="link">
+                <a href="{% url 'userauths:sign-up' %}">Login</a>
+            </div>
+            <div class="link">
+                <a href="{% url 'userauths:sign-out' %}">Logout</a>
+            </div>
           </div>
        </div>
     </header>
@@ -103,47 +111,22 @@
   
 
 
-    <section class="suggested_prd">
-       <h1>Nearby Property</h1>
-       <div class="card-container">
-       <div class="card" id="card">
-          <img src="{% static 'img/pexels-akos-szabo-145938-440731.jpg' %}" alt="Denim Jeans" style="width:100%">
-          <div class="card-content">
-             <p style="text-align: right;">&#9989 DTCP Approved</p>
-             <h1>Tailored Jeans</h1>
-             <p>Some text about the jeansThe point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to ..</p>
-             <p style="text-align: right;color: #FDBC00;">Rs.xxxx </p>
-          </div>
-       </div>
-       <div class="card" id="card">
-        <img src="{% static 'img/pexels-akos-szabo-145938-440731.jpg' %}" alt="Denim Jeans" style="width:100%">
-        <div class="card-content">
-           <p style="text-align: right;">&#9989 DTCP Approved</p>
-           <h1>Tailored Jeans</h1>
-           <p>Some text about the jeansThe point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to ..</p>
-           <p style="text-align: right;color: #FDBC00;">Rs.xxxx </p>
-        </div>
-     </div>
+  <section class="suggested_prd">
+   <h1>Similar Property</h1>
+   <div class="card-container">
+     {% for p in products %}
      <div class="card" id="card">
-      <img src="{% static 'img/pexels-akos-szabo-145938-440731.jpg' %}" alt="Denim Jeans" style="width:100%">
-      <div class="card-content">
-         <p style="text-align: right;">&#9989 DTCP Approved</p>
-         <h1>Tailored Jeans</h1>
-         <p>Some text about the jeansThe point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to ..</p>
-         <p style="text-align: right;color: #FDBC00;">Rs.xxxx </p>
-      </div>
-   </div>
-   <div class="card" id="card">
-    <img src="{% static 'img/pexels-akos-szabo-145938-440731.jpg' %}" alt="Denim Jeans" style="width:100%">
-    <div class="card-content">
-       <p style="text-align: right;">&#9989 DTCP Approved</p>
-       <h1>Tailored Jeans</h1>
-       <p>Some text about the jeansThe point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to ..</p>
-       <p style="text-align: right;color: #FDBC00;">Rs.xxxx </p>
-    </div>
- </div>
-</div>
-       <script></script>
-    </section>
+         <img src="{{ p.image.url }}" alt="Product Image" style="width:100%">
+         <div class="card-content">
+             {% if p.dtcp_approved %}  <!-- Added check for DTCP approval -->
+             <p style="text-align: right;">&#9989 DTCP Approved</p>
+             {% endif %}
+             <h1>{{ p.title }}</h1>
+             <p>{{ p.description|truncatewords:30 }}</p>  <!-- Corrected spelling mistake from 'descriptiopn' to 'description' -->
+             <p style="text-align: right;color: #FDBC00;">Rs.{{ p.price }}</p>
+         </div>
+     </div>
+     {% endfor %}
+</section>
    </body>
     {% endblock content %}
