@@ -66,19 +66,19 @@
     </section>
     
     <section>
+       
         <div class="category">
             <h1 style="text-align: center;">CATEGORY</h1>
             <div class="card-container">
                 {% for c in categories %}
-                    <div class="card" id="card">
-                        <a href="{% url 'core:product_by_category' c.id %}">
-                            <img src="{{ c.image.url }}" alt="Category Image" style="width:100%">
-                            <div class="card-content card-home">
-                                <h1 style="text-align: center;">{{ c.title }}</h1>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
+            <div class="cat-img">
+                <a href="{% url 'core:product_by_category' c.id %}">
+                    <img src="{{ c.image.url }}" alt="Denim Jeans" style="width:100%">
+                    <p>{{ c.title }}</p>
+                </a>
+            </div>
+            {% endfor %}
+                
             </div>
             <div class="card-show-button" id="card-show-button">
                 <a href="{% url 'core:product' %}">
@@ -100,7 +100,7 @@
                         <img src="{{ p.image.url }}" alt="Product Image" style="width:100%">
                         <div class="card-content card-home">
                             <h1 style="text-align: center;">{{ p.title }}</h1>
-                            <h3 style="text-align: center;">{{ p.price }}</h3>
+
                         </div>
                     </div>
                     </a>
@@ -108,6 +108,46 @@
             </div>
         </div>
     </section>
+
+    <section >
+        <h1 class="testimonial-header">Testimonial</h1>
+        <div class="custom-testimonials-section">
+           <input type="radio" name="custom-slider" title="slide1" checked="checked" class="custom-slider__nav"/>
+           <input type="radio" name="custom-slider" title="slide2" class="custom-slider__nav"/>
+           <input type="radio" name="custom-slider" title="slide3" class="custom-slider__nav"/>
+           <input type="radio" name="custom-slider" title="slide4" class="custom-slider__nav"/>
+           <input type="radio" name="custom-slider" title="slide5" class="custom-slider__nav"/>
+         <div class="custom-slider__inner">
+           <div class="custom-slider__contents">
+             <quote>&rdquo;</quote>
+             <p class="custom-slider__txt">Senthamiz Real Estate made the process of buying land seamless and stress-free. Their team was incredibly helpful and knowledgeable.</p>
+             <h2 class="custom-slider__caption">Arun | Happy Buyer</h2>
+           </div>
+           <div class="custom-slider__contents">
+             <quote>&rdquo;</quote>
+             <p class="custom-slider__txt">I had a fantastic experience with Senthamiz Real Estate. They offered great customer service and helped me find the perfect plot of land for my dream home.</p>
+             <h2 class="custom-slider__caption">Priya | New Landowner</h2>
+           </div>
+           <div class="custom-slider__contents">
+             <quote>&rdquo;</quote>
+             <p class="custom-slider__txt">Senthamiz Real Estate went above and beyond to ensure I was satisfied with my purchase. Their attention to detail and customer care are unmatched.</p>
+             <h2 class="custom-slider__caption">Karthik | Satisfied Client</h2>
+           </div>
+           <div class="custom-slider__contents">
+             <quote>&rdquo;</quote>
+             <p class="custom-slider__txt">The team at Senthamiz Real Estate is professional, friendly, and extremely efficient. I highly recommend them to anyone looking to buy land.</p>
+             <h2 class="custom-slider__caption">Sangeetha | Happy Customer</h2>
+           </div>
+           <div class="custom-slider__contents">
+             <quote>&rdquo;</quote>
+             <p class="custom-slider__txt">From start to finish, Senthamiz Real Estate provided exceptional service. They made buying land a hassle-free experience.</p>
+             <h2 class="custom-slider__caption">Rajesh | Delighted Buyer</h2>
+           </div>
+         </div>
+       </div>
+       
+       
+     </section>
 </body>
 </html>
 
