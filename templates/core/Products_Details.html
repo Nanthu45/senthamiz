@@ -12,9 +12,9 @@
           </div>
           <div class="links">
             {% if is_authenticated %}
-            <div class="link">
-                <a href="#" style="color: #FDBC00;">Welcome, {{ username }}!</a>
-            </div>
+                <div class="link">
+                    <a href="#" style="color: #FDBC00;">Welcome, {{ username }}!</a>
+                </div>
             {% endif %}
             <div class="link">
                 <a href="{% url 'core:index' %}">Home</a>
