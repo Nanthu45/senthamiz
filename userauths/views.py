@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from userauths.forms import UserRegisterForm
-from userauths.models import User
+from django.views.decorators.csrf import csrf_protect
 
-# Sign up view
+@csrf_protect
 def register_view(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
@@ -12,7 +12,7 @@ def register_view(request):
             new_user = form.save()
             username = form.cleaned_data.get("username")
             messages.success(request, f'Your account {username} has been created successfully! You can now log in.')
-            new_user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+            new_user = authenticate(username=username, password=form.cleaned_data['password1'])
             if new_user is not None:
                 login(request, new_user)
                 return redirect("core:index")
@@ -26,7 +26,7 @@ def register_view(request):
     }
     return render(request, "userauths/login.html", context)
 
-# Login view
+@csrf_protect
 def login_view(request):
     if request.user.is_authenticated:
         messages.warning(request, "You are already logged in.")
@@ -42,11 +42,10 @@ def login_view(request):
             return redirect("core:index")
         else:
             messages.warning(request, "Invalid email or password.")
-
     return render(request, "userauths/login.html")
 
-# Logout view
+@csrf_protect
 def logout_view(request):
     logout(request)
     messages.success(request, "Logged out successfully.")
-    return redirect("userauths:sign-in")
+    return redirect( "core:index")

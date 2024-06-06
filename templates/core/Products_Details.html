@@ -25,9 +25,11 @@
             <div class="link">
                 <a href="{% url 'userauths:sign-up' %}">Login</a>
             </div>
-            <div class="link">
-                <a href="{% url 'userauths:sign-out' %}">Logout</a>
-            </div>
+            {% if  is_authenticated %}
+                <div class="link">
+                    <a href="{% url 'userauths:sign-out' %}">Logout</a>
+                </div>
+            {% endif %}
           </div>
        </div>
     </header>

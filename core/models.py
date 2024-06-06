@@ -52,10 +52,8 @@ class Product (models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     Category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True,default="product category",related_name="category")
     price = models.DecimalField(max_digits=999999999, decimal_places=2 ,default="0.00")
-    specification = models.TextField(null=True,blank=True,default="Description") 
     product_status = models.CharField(choices=STATUS,max_length=10,default="in_review")
 
-    status = models.BooleanField(default=True)
     featured = models.BooleanField (default=False)
 
     sku =ShortUUIDField(unique=True, length=4 , max_length=10, prefix="SKU-", alphabet="1234567890")
@@ -68,6 +66,7 @@ class Product (models.Model):
 
     # New field to indicate DTCP approval
     dtcp_approved = models.BooleanField(default=False, help_text="Check if the product is DTCP approved")
+    cmda_approved = models.BooleanField(default=False, help_text="Check if the product is CMDA approved")
 
     class Meta:
         verbose_name_plural = "Products"

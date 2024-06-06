@@ -175,6 +175,13 @@ hr {
 }
 
 @media screen and (max-width: 576px) {
+  .banner-logo h1{
+    font-size: 40px !important;
+  }
+
+  .banner-logo p {
+    font-size: 13px;
+  }
   .product-container{
     flex-direction: column;
   }
@@ -184,7 +191,7 @@ hr {
   .product-info{
     width: 100%;
   }
-  echo "# product-details-page-html-css-js" >> README.md
+  
   .product-info p{
     width: 100%;
   }
@@ -212,7 +219,7 @@ hr {
   }
 
   .footer-contact p{
-    font-size: 12px;
+    font-size: 8px;
   }
   .made-with-love{
     font-size: 12px;
@@ -231,7 +238,7 @@ hr {
   }
   #lottie-animation{
     height: 400px!important;
-    width: 400px!important;
+    width: 350px!important;
   }
   .about  p {
     font-size: 15PX !important;
@@ -435,11 +442,7 @@ hr {
   gap: 10px;
 }
 
-.img-roud-bg{
-  background-color: #ffffff;
-  border-radius: 50%;
-  padding: 5%;
-}
+
 
 .call{
   display: flex;

@@ -24,9 +24,11 @@
                 <div class="link">
                     <a href="{% url 'userauths:sign-up' %}">Login</a>
                 </div>
+                {% if  is_authenticated %}
                 <div class="link">
                     <a href="{% url 'userauths:sign-out' %}">Logout</a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </header>
@@ -71,6 +73,9 @@
                     <div class="card-content">
                         {% if p.dtcp_approved %}
                             <p style="text-align: right;">&#9989 DTCP Approved</p>
+                        {% endif %}
+                        {% if p.cmda_approved %}
+                            <p style="text-align: right;">&#9989 CMDA Approved</p>
                         {% endif %}
                         <h1>{{ p.title }}</h1>
                         <p>{{ p.description|truncatewords:30 }}</p>

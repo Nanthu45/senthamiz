@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-@y)nt4g$y^oq6vfcsfu_@zu^a5nx=2-o5^ihxk*fm754!74!##
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -39,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+     
+     #'adminrestrict',
 
     #custom apps
     'core','userauths',
@@ -53,9 +56,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #'adminrestrict.middleware.AdminPagesRestrictMiddleware',
 ]
 
 ROOT_URLCONF = 'test02.urls'
+
+# Allowed IP addresses
+ADMINRESTRICT_ALLOW = [
+    '127.0.0.1',
+]
 
 TEMPLATES = [
     {
@@ -74,6 +84,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'test02.wsgi.application'
+
+#CSRF
+
+CSRF_TRUSTED_ORGINS=[
+    'https://www.senthamiz.com',
+]
 
 
 # Database
@@ -145,3 +161,26 @@ JAZZMIN_SETTINGS={
 
 AUTH_USER_MODEL = 'userauths.User'
 
+# In your settings.py file
+
+'''# 1. Enable HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # 1 year in seconds
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+# 2. Redirect all connections to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# 3. Generate a new, secure SECRET_KEY
+# You can generate a new key using a secure method like `secrets` module
+import secrets
+SECRET_KEY = secrets.token_hex(32)
+
+# 4. Set session cookie to secure-only
+SESSION_COOKIE_SECURE = True
+
+# 5. Set CSRF cookie to secure-only
+CSRF_COOKIE_SECURE = True
+
+# 6. Disable DEBUG mode in deployment
+DEBUG = False'''
