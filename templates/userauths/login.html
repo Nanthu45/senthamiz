@@ -47,8 +47,12 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" name="password" id="sign-in-password" required placeholder="Password">
-                        <i class="fas fa-eye" id="toggle-sign-in-password" onclick="togglePassword('sign-in-password', 'toggle-sign-in-password')"></i>
+                        <input type="password" name="password" id="sign-in-password" required placeholder="Password" class="password-input">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="showPassword"
+                            onclick="togglePasswordVisibility()">
+                        <label class="form-check-label" for="showPassword">Show Password</label>
                     </div>
                     <input type="submit" value="Login" class="btn solid" />
                     {% if messages %}
@@ -78,6 +82,11 @@
                         <i class="fas fa-lock"></i>
                         {{ form.password2 }}
                     </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="showPassword"
+                            onclick="togglePasswordVisibility()">
+                        <label class="form-check-label" for="showPassword">Show Password</label>
+                    </div>
                     <input type="submit" class="btn" value="Sign up" />
                     {% if messages %}
                     <ul>
@@ -86,6 +95,18 @@
                         {% endfor %}
                     </ul>
                     {% endif %}
+                    <script>
+                        function togglePasswordVisibility() {
+                            var passwordInputs = document.querySelectorAll(".password-input");
+                            passwordInputs.forEach(function (input) {
+                                if (input.type === "password") {
+                                    input.type = "text";
+                                } else {
+                                    input.type = "password";
+                                }
+                            });
+                        }
+                    </script>
                 </form>
             </div>
         </div>
