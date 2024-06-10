@@ -899,7 +899,7 @@ a{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh;
+  height: auto;
   padding: 0 2%;
 }
 
@@ -913,7 +913,7 @@ a{
   align-items: center;
   justify-content: center;
   padding: 0 2%;
-  height: 60vh;
+  height: auto;
 }
 
 #lottie-animation{
