@@ -36,10 +36,11 @@
         <a href="{% url 'core:index' %}"><img src="{% static 'img/Group 3475.png' %}" alt=""></a>
     </div>
     <div class="product-banner home">
-        <img src="{% static 'img/Group 3603.jpg' %}" alt="">
+        <img src="{% static 'img\Frame 4.png' %}" alt="">
         <div class="banner-logo">
+            <P>DTCP , CMDA & RERA Approved lands and Properties</P>
             <h1>SENTHAMIZ REAL ESTATE</h1>
-            <p>DTCP Approved lands and Properties</p>
+            <p class="p-h">Discover exclusive properties in prime locations</p>
         </div>
     </div>
     <!--<section class="search-container">
@@ -79,6 +80,7 @@
                         {% endif %}
                         <h1>{{ p.title }}</h1>
                         <p>{{ p.description|truncatewords:30 }}</p>
+                        <p><strong> Sq.ft: </strong> {{ p.SquareFeet }}</p> 
                         <p style="text-align: right;color: #FDBC00;">Rs.{{ p.price }} </p>
                     </div>
                 </a>
@@ -90,6 +92,7 @@
                             <p style="text-align: right;">&#9989 DTCP Approved</p>
                         {% endif %}
                         <h1>{{ p.title }}</h1>
+                        <h3>{{p.SquareFeet}}</h3>
                         <p>{{ p.description|truncatewords:30 }}</p>
                         <p style="text-align: right;color: #FDBC00;">Rs.{{ p.price }} </p>
                     </div>
@@ -115,28 +118,7 @@
         </span>
     </div>
     <style>
-        .pagination-Product {
-            margin: 20px 0;
-            text-align: center;
-        }
-        .pagination-Product a, .pagination-Product span {
-            margin: 0 5px;
-            padding: 8px 16px;
-            text-decoration: none;
-            color: #333;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        .pagination-Product a:hover {
-            background-color: #f0f0f0;
-        }
-        .pagination-Product .current {
-            font-weight: bold;
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
+      
     </style>
     
     

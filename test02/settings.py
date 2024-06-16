@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-@y)nt4g$y^oq6vfcsfu_@zu^a5nx=2-o5^ihxk*fm754!74!##
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
+    '127.0.0.1','www.senthamiz.in','senthamiz.in',
 ]
 
 

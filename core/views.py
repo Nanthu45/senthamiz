@@ -54,6 +54,7 @@ def product_details(request,pid):
     special_features = product.special_features.split(',') if product.special_features else []
     products = Product.objects.filter(Category=product.Category)
     username = request.user.username
+    is_authenticated = request.user.is_authenticated
     context = {
         "p":product,
         "p_images":p_image,
@@ -62,6 +63,7 @@ def product_details(request,pid):
         'longitude': product.longitude if product else None, 
         "products": products,
         "username": username,
+        "is_authenticated": is_authenticated,
     }
     return render (request,'core/Products_Details.html',context)
 

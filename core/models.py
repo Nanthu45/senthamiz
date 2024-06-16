@@ -33,6 +33,13 @@ class Product (models.Model):
     description = models.TextField(null=True,blank=True,default="Description")
 
     address = models.TextField(null=True,blank=True,default="Description")
+    SquareFeet = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,  
+        null=True,
+        blank=True,
+        help_text="Square Feet"
+    )
 
     latitude = models.DecimalField(
         max_digits=12,

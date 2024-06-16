@@ -39,7 +39,7 @@
     </div>
     
     <div class="pagination">
-       <p><a href="{% url 'core:index' %}">Home > </a> <a href="{% url 'core:product' %}">Property ></a></p>
+       <p><a href="{% url 'core:index' %}">Home > </a> <a href="{% url 'core:product' %}">Property ></a>&nbsp; {{p.title}}</p>
     </div>
     <!-- product section -->
     <section class="product-container">
@@ -56,12 +56,15 @@
        </div>
        <!-- Right side -->
        <div class="product-info">
-          <h3>{{p.name}}</h3>
+          <h3>{{p.title}}</h3>
          {% if p.dtcp_approved %}
                         <p style="text-align: right;">&#9989 DTCP Approved</p>
          {% endif %} 
           <p>
             {{ p.description }}
+          </p>
+          <p>
+            <strong> Sq.ft{{p.SquareFeet}}</strong>
           </p>
           <div class="land_features">
              <p>What this place Offers</p>
@@ -120,11 +123,15 @@
      <div class="card" id="card">
          <img src="{{ p.image.url }}" alt="Product Image" style="width:100%">
          <div class="card-content">
-             {% if p.dtcp_approved %}  <!-- Added check for DTCP approval -->
-             <p style="text-align: right;">&#9989 DTCP Approved</p>
-             {% endif %}
+          {% if p.dtcp_approved %}
+          <p style="text-align: right;">&#9989 DTCP Approved</p>
+      {% endif %}
+      {% if p.cmda_approved %}
+          <p style="text-align: right;">&#9989 CMDA Approved</p>
+      {% endif %}
              <h1>{{ p.title }}</h1>
-             <p>{{ p.description|truncatewords:30 }}</p>  <!-- Corrected spelling mistake from 'descriptiopn' to 'description' -->
+             <p>{{ p.description|truncatewords:30 }}</p>
+             <p><strong> Sq.ft:</strong> {{ p.SquareFeet }}</p>
              <p style="text-align: right;color: #FDBC00;">Rs.{{ p.price }}</p>
          </div>
      </div>
